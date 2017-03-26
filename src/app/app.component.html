@@ -1,2 +1,12 @@
 <app-navigation></app-navigation>
-<router-outlet></router-outlet>
+<main class="mdl-layout__content" style="width: 100%">
+  <div class="mdl-layout__tab-panel ">
+    <router-outlet></router-outlet>
+    <footer style="display: none" class="mdl-mega-footer">
+      <div class="mdl-mega-footer--bottom-section">
+        <p>footer</p>
+      </div>
+    </footer>
+    {{football | json }}
+  </div>
+</main>

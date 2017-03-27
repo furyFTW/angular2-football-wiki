@@ -1,3 +1,22 @@
-<p>
-  season works!
-</p>
+<md-grid-list cols="3" rowHeight="50px">
+  <md-grid-tile>
+    League-Code
+  </md-grid-tile>
+  <md-grid-tile>
+    League
+  </md-grid-tile>
+  <md-grid-tile>
+    Number of Teams
+  </md-grid-tile>
+</md-grid-list>
+<md-grid-list cols="3" rowHeight="50px" *ngFor="let football of football">
+  <md-grid-tile  [routerLink]="['/competition', football.id]">
+    {{football.league}}
+  </md-grid-tile>
+  <md-grid-tile>
+    {{football.caption}}
+  </md-grid-tile>
+  <md-grid-tile>
+    {{football.numberOfTeams}}
+  </md-grid-tile>
+</md-grid-list>

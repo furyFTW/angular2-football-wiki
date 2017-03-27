@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+.main {
+    width: 1028px;
+    margin: auto;
+}
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *

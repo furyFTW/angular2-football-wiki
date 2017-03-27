@@ -8,12 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SeasonComponent } from './season/season.component';
+import { TeamComponent } from './team/team.component';
+import { PlayersComponent } from './players/players.component';
+import { CompetitionComponent } from './competition/competition.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    SeasonComponent
+    SeasonComponent,
+    TeamComponent,
+    PlayersComponent,
+    CompetitionComponent
   ],
   imports: [
     BrowserModule,

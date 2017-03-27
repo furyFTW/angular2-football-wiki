@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+
+import { Season } from './season';
 
 const API_KEY = '07e6db25a47b488bb08978c822667718';
 const BASE_URL = 'http//api.football-data.org/v1/';
+
 
 @Injectable()
 export class FootbalService {
@@ -11,29 +17,41 @@ export class FootbalService {
   constructor(
     private http: Http
   ) { }
-  getUser() {
+  public getId (href ){
+      return /\d{2,3}/i.exec(href);
+      
+  }
+  private handleError(error: Response) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
 
   }
-  public getSeasons(_params) {
+
+  public getSeasons(_params): Observable<Season[]> {
     var searchData = this.getNew("getSeasons", _params);
     let headers = new Headers();
     headers.append('X-Auth-Token', API_KEY);
-    return this.http.get(`http://api.football-data.org/v1/competitions/424`, {
+    return this.http.get(`http://api.football-data.org/v1/competitions`, {
       headers: headers
-    }).map((res: Response) => res.json());
+    })
+      .map((res: Response) => res.json())
+      // .do(data => console.log(JSON.stringify(data)))
+      .catch(this.handleError);
 
   };
 
-  getSeason(_params) {
 
-    var searchData = this.getNew("getSeason", _params);
-
-  };
-
-  getTeam(_params) {
-
+  public getTeam(_params) {
+    console.log(_params)
     var searchData = this.getNew("getTeam", _params);
-
+    let headers = new Headers();
+    headers.append('X-Auth-Token', API_KEY);
+    return this.http.get(`http://api.football-data.org/v1/competitions/${_params}/teams`, {
+      headers: headers
+    })
+      .map((res: Response) => <Season[]>res.json())
+      // .do(data => console.log(JSON.stringify(data)))
+      .catch(this.handleError);
   };
 
   getPlayersByTeam(_params) {
@@ -76,7 +94,7 @@ export class FootbalService {
 
     var searchData = this.getNew("getFixturesBySeason", _params);
 
-    
+
   };
   fillDataInObjectByList(_object, _params, _list) {
     for (var key in _list) {

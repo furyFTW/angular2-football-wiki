@@ -56,7 +56,6 @@ export class FootbalService {
   public getPlayersByTeam(_params) {
 
     var searchData = this.getNew("getPlayersByTeam", _params);
-    console.log(searchData);
     let headers = new Headers();
     headers.append('X-Auth-Token', API_KEY);
     return this.http.get(`http://api.football-data.org/v1/teams/${_params}/players`, {

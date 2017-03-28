@@ -6,7 +6,7 @@ import { FootbalService } from '../football-api/footbal.service';
   selector: 'app-competition',
   templateUrl: './competition.component.html',
   styleUrls: ['./competition.component.css'],
-  providers : [FootbalService]
+  providers: [FootbalService]
 })
 export class CompetitionComponent implements OnInit {
   private id;
@@ -15,17 +15,19 @@ export class CompetitionComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
-      console.log( this.id)
+      this.id = +params['id'];
       this.FootbalService.getTeam(this.id).subscribe(data => {
-        this.getIdbyLink(data._links)
+        data.teams.forEach(cur => {
+          cur.id = this.getIdbyLink(cur._links.self.href);
+        });
         this.competitions = data.teams;
       })
     })
   }
 
-  getIdbyLink(link){
-   this.id =  this.FootbalService.getId(link);
+  getIdbyLink(link) {
+    return this.FootbalService.getId(link);
+
   }
 
 }

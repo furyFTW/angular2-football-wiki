@@ -1,24 +1,17 @@
-<div class="main" *ngIf="teams">
-  <md-grid-list cols="3" rowHeight="50px">
-    <md-grid-tile>
-      Name
-    </md-grid-tile>
-    <md-grid-tile>
-      Flag
-    </md-grid-tile>
-    <md-grid-tile>
-      Code Of Team
-    </md-grid-tile>
-  </md-grid-list>
-  <md-grid-list cols="3" rowHeight="50px" *ngFor="let team of teams">
-    <md-grid-tile [routerLink]="['/team', team.id]">
-      {{team.name}}
-    </md-grid-tile>
-    <md-grid-tile>
-      <img width="20"  [src]="team.crestUrl" />
-    </md-grid-tile>
-    <md-grid-tile>
-      {{team.code}}
-    </md-grid-tile>
-  </md-grid-list>
+<div *ngIf="players && players.length > 0">
+    <md-card class="example-card" *ngFor="let player of players">
+        <md-card-header>
+            <div class="example-header-image" md-card-avatar=""></div>
+            <md-card-title> {{player.name}}</md-card-title>
+            <md-card-subtitle> {{player.position}}</md-card-subtitle>
+        </md-card-header>
+        <md-card-content>
+            <p>{{player.dateOfBirth}}</p>
+            <p>{{player.marketValue}}</p>
+            <p>{{player.nationality}}</p>
+        </md-card-content>
+    </md-card>
+</div>
+<div *ngIf="players && players.length == 0">
+    <p>Not Found Players</p>
 </div>

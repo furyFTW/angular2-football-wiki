@@ -17,9 +17,8 @@ export class FootbalService {
   constructor(
     private http: Http
   ) { }
-  public getId (href ){
-      return /\d{2,3}/i.exec(href);
-      
+  public getId(href) {
+    return /\d{2,3}/i.exec(href)[0];
   }
   private handleError(error: Response) {
     console.error(error);
@@ -54,10 +53,18 @@ export class FootbalService {
       .catch(this.handleError);
   };
 
-  getPlayersByTeam(_params) {
+  public getPlayersByTeam(_params) {
 
     var searchData = this.getNew("getPlayersByTeam", _params);
-
+    console.log(searchData);
+    let headers = new Headers();
+    headers.append('X-Auth-Token', API_KEY);
+    return this.http.get(`http://api.football-data.org/v1/teams/${_params}/players`, {
+      headers: headers
+    })
+      .map((res: Response) => <Season[]>res.json())
+      // .do(data => console.log(JSON.stringify(data)))
+      .catch(this.handleError)
   };
 
   getFixtures(_params) {

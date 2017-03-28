@@ -11,14 +11,14 @@ import { FootbalService } from '../football-api/footbal.service';
 })
 export class TeamComponent implements OnInit {
   private id;
-  private teams;
+  private players;
   constructor(private route: ActivatedRoute, private FootbalService: FootbalService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
-      this.FootbalService.getTeam(this.id).subscribe(data => {
-        this.teams = data.teams;
+      this.id = +params['id'];
+      this.FootbalService.getPlayersByTeam(this.id).subscribe(data => {
+        this.players = data.players;
       })
     });
   }

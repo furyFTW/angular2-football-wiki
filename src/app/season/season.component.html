@@ -1,22 +1,22 @@
-<md-grid-list cols="3" rowHeight="50px">
-  <md-grid-tile>
-    League-Code
-  </md-grid-tile>
-  <md-grid-tile>
-    League
-  </md-grid-tile>
-  <md-grid-tile>
-    Number of Teams
-  </md-grid-tile>
+<md-grid-list class="animated bounceInLeft" cols="3" rowHeight="50px">
+    <md-grid-tile>
+        League-Code
+    </md-grid-tile>
+    <md-grid-tile>
+        League
+    </md-grid-tile>
+    <md-grid-tile>
+        Number of Teams
+    </md-grid-tile>
 </md-grid-list>
-<md-grid-list cols="3" rowHeight="50px" *ngFor="let football of football">
-  <md-grid-tile  [routerLink]="['/competition', football.id]">
-    {{football.league}}
-  </md-grid-tile>
-  <md-grid-tile>
-    {{football.caption}}
-  </md-grid-tile>
-  <md-grid-tile>
-    {{football.numberOfTeams}}
-  </md-grid-tile>
+<md-grid-list class="animated bounceInRight" cols="3" rowHeight="50px" *ngFor="let football of football">
+    <md-grid-tile class="hover" [routerLink]=" [ '/competition', football.id] ">
+        {{football.league}}
+    </md-grid-tile>
+    <md-grid-tile>
+        {{football.caption}}
+    </md-grid-tile>
+    <md-grid-tile>
+        {{football.numberOfTeams}}
+    </md-grid-tile>
 </md-grid-list>

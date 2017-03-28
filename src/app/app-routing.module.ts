@@ -23,7 +23,7 @@ const routes: Routes = [
         component: TeamComponent
     },
     {
-        path: 'player/:id',
+        path: 'players/:id',
         component: PlayersComponent
     }
 ];
